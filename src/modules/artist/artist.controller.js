@@ -54,8 +54,27 @@ const getArtistById = async (req, res) => {
    }
 };
 
+const getRestArtistsById = async (req, res) => {
+   try {
+     const result = await ArtistService.getRestArtistsById(req.params.id);
+ 
+     res.status(200).json({
+       status: "success",
+       message: "Get rest Artist info by id Successfully!",
+       data: result,
+     });
+   } catch (error) {
+     res.status(400).json({
+       status: "error",
+       message: "Failed to Get rest Artist info by id..!",
+       error: error.message,
+     });
+   }
+ };
+
 module.exports.ArtistController = {
    createArtist,
    getAllArtist,
-   getArtistById
+   getArtistById,
+   getRestArtistsById
 };
